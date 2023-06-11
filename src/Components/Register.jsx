@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CountryData from '../CountryData.json'
 import { useFirebase } from '../Firebase/Context'
 import { useNavigate } from 'react-router-dom'
-
+import Title from '../assets/Title.png'
 
 const Register = () => {
   
@@ -43,9 +43,12 @@ const Register = () => {
     <div>
       <main className="min-h-screen bg-gradient-to-r from-[#00df9a] to-[#000300] flex items-center justify-center text-gray-500 text-sm">
             <form
-                className="bg-[#000300] text-white shadow-lg rounded-md p-5 md:p-10 flex flex-col w-11/12 max-w-lg group"  noValidate
+                className="bg-[#000300] text-[#00df9a] font-semibold shadow-lg rounded-md p-5 md:p-10 flex flex-col w-11/12 max-w-lg group"  noValidate
+                onSubmit={handleSubmit}
             >
-
+              <div className='flex justify-center items-center'>
+                <img src={Title} alt="" className='w-28'/> 
+              </div>
                 <label for="fname" className="mb-5">
                 <span>First Name</span>
                 <input
@@ -85,21 +88,22 @@ const Register = () => {
                     required
                 />
                 </label> */}
-
+                <label htmlFor="" className='mb-5'><span>Country</span>
                 <select name="countryName" id="" className='w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-[#00df9a] font-semibold'  onChange={(e)=>handleCountry(e)}>
-                  <option value="" hidden>
+                  <option value="" hidden >
                     --Select Country
                   </option>
                   {
                     CountryData.map((item)=> {
                       return (
-                        <option  key={item.code} value={item.name} className='text-white'>
+                        <option  key={item.code} value={item.name} className='bg-black'>
                             {item.name}
                         </option>
                       )
                     })
                   }
                 </select>
+                </label>
 
                 <label for="email" className="mb-5">
                 <span>Email</span>
@@ -110,7 +114,7 @@ const Register = () => {
                     className=" peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500  w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-[#00df9a] font-semibold"
                     placeholder=" "
                     required
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                     onChange={(e)=>setEmail(e.target.value)}
                     value={email}
 
@@ -134,13 +138,13 @@ const Register = () => {
                     value={password}
                 />
                 <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
-                    Please enter a valid password
+                    Password must contain minimum eight characters, at least one letter, one number and one special character
                 </span>
                 </label>
 
                
 
-                <button type="submit" className="mt-5 bg-blue-500 py-3 rounded-md text-white group-invalid:pointer-events-none group-invalid:opacity-30" onClick={handleSubmit}>Submit</button>
+                <button type="submit" className="mt-5  py-3  group-invalid:pointer-events-none group-invalid:opacity-30 bg-[#00df9a] rounded-md font-semibold text-white text-xl hover:text-[#00df9a] hover:transition-all hover:bg-white">Submit</button>
             </form>
         </main>
     </div>

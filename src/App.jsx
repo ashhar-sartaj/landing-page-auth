@@ -15,15 +15,15 @@ function App() {
     <>
       
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='login' element={<Login/>}/>
-        <Route path='register' element={<Register/>}/>
-        <Route path='account' element={
+        <Route exact path='/' element={<Home/>}/>
+        <Route exact path='/login' element={<Login/>}/>
+        <Route exact path='/register' element={<Register/>}/>
+        <Route exact path='/account' element={
           <ProtectedRoute>
             <Account/>
           </ProtectedRoute>
         }/>
-        <Route path='/modal' element={<Modal/>}/>
+        <Route path='/protected' element={<Modal/>}/>
       </Routes>
         
     </>

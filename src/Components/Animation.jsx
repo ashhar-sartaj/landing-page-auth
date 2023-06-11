@@ -6,7 +6,7 @@ const Animation = () => {
   return (
     <div className='text-white'>
       <div className='max-w-[1000px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
-            {/* <p className='text-[#00df9a] font-bold p-2'>Growing with data analytics</p> */}
+            
             <h1 className='md:text-3xl sm:4xl text-3xl font-bold md:py-6 text-[#00df9a]'>Tame your work, Organise your life</h1>
             
             <div className='flex justify-center items-center'>

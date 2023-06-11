@@ -3,9 +3,7 @@ import { useFirebase } from '../Firebase/Context'
 import { useNavigate } from 'react-router-dom'
 
 const Account = () => {
-    const firebase = useFirebase()
-    // const user = firebase.user
-    // console.log(user)
+
 
     const {isLoggedIn, user, logoutUser} = useFirebase()
 

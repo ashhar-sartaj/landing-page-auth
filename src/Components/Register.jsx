@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import CountryData from '../CountryData.json'
 import { useFirebase } from '../Firebase/Context'
 import { useNavigate } from 'react-router-dom'
@@ -18,6 +18,12 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
+  const fnameRef = useRef(null)
+  const lnameRef = useRef(null)
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
+  
+
   const handleCountry = (e) => {
     const countryname = e.target.value
     console.log(countryname)
@@ -26,6 +32,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    fnameRef.current.value=''
+    lnameRef.current.value=''
+    emailRef.current.value=''
+    passwordRef.current.value=''
     setError('')
     try {
         await firebase.signupUser(email, password)
@@ -49,7 +59,7 @@ const Register = () => {
               <div className='flex justify-center items-center'>
                 <img src={Title} alt="" className='w-28'/> 
               </div>
-                <label for="fname" className="mb-5">
+                <label htmlFor="fname" className="mb-5">
                 <span>First Name</span>
                 <input
                     type="text"
@@ -60,10 +70,11 @@ const Register = () => {
                     required
                     onChange={(e)=>setFname(e.target.value)}
                     value={fname}
+                    ref={fnameRef}
                 />
                 </label>
 
-                <label for="lname" className="mb-5">
+                <label htmlFor="lname" className="mb-5">
                 <span>Last Name</span>
                 <input
                     type="text"
@@ -74,10 +85,11 @@ const Register = () => {
                     required
                     onChange={(e)=>setLname(e.target.value)}
                     value={lname}
+                    ref={lnameRef}
                 />
                 </label>
 
-                {/* <label for="country" className="mb-5">
+                {/* <label htmlFor="country" className="mb-5">
                 <span>Country</span>
                 <input
                     type="text"
@@ -105,7 +117,7 @@ const Register = () => {
                 </select>
                 </label>
 
-                <label for="email" className="mb-5">
+                <label htmlFor="email" className="mb-5">
                 <span>Email</span>
                 <input
                     type="email"
@@ -117,14 +129,15 @@ const Register = () => {
                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                     onChange={(e)=>setEmail(e.target.value)}
                     value={email}
+                    ref={emailRef}
 
                 />
-                <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                <span className="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Please enter a valid email address
                 </span>
                 </label>
 
-                <label for="password" className="mb-5">
+                <label htmlFor="password" className="mb-5">
                 <span>Set Password</span>
                 <input
                     type="password"
@@ -136,8 +149,9 @@ const Register = () => {
                     pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                     onChange={(e)=>setPassword(e.target.value)}
                     value={password}
+                    ref={passwordRef}
                 />
-                <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                <span className="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                     Password must contain minimum eight characters, at least one letter, one number and one special character
                 </span>
                 </label>

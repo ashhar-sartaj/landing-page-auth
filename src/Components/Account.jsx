@@ -23,7 +23,7 @@ const Account = () => {
         
             <div className='flex flex-col justify-center items-center border border-violet-800 h-screen'>
                 <h2 className='text-3xl font-bold font-mono text-white border border-x-violet-50'> {
-                  user && `Welcome ${user.email}`
+                  user && `Welcome to the system ${user.email}`
                 }
                   
                   </h2>
